@@ -5,18 +5,31 @@ A fun project for building a fake wallet system to practice full-stack developme
 ## ✨ Key Features
 
 • JWT-based authentication with HTTP-only cookies
+
 • Emoji avatar customization
+
 • Profile management with account deletion
+
 • Create wallets with custom icons & colors
+
 • Balance tracking (supports negative balances)
+
 • Transaction history with pagination
+
 • Role-based wallet sharing (Owner/Partner/Viewer)
+
 • Invitation system for wallet access
+
 • Permission-based access control
+
 • Add, edit, and soft-delete transactions
+
 • Tag-based categorization with predefined tags
+
 • Live updates across wallet views
+
 • Responsive design with Ant Design components
+
 • Asia/Dhaka timezone consistency
 
 ## 🛠️ Tech Stack
@@ -97,6 +110,6 @@ MIT License - feel free to use this project for learning and development!
 ---
 
 <div align="center">
-  <p>Built with ❤️ using Next.js & TypeScript</p>
+  <p>Built with ❤️ using Next.js & TypeScript.And Pure Vive Coding 👩‍💻</p>
   <p>⭐ Star this repo if you found it helpful!</p>
 </div>
