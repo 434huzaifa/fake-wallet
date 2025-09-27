@@ -1,0 +1,9 @@
+{
+    "chat.mcp.serverSampling": {
+        "fake-wallet/.vscode/mcp.json: sequential-thinking": {
+            "allowedModels": [
+                "copilot/auto"
+            ]
+        }
+    }
+}
