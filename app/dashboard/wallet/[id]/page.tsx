@@ -23,7 +23,8 @@ import {
   WalletOutlined, 
   ArrowUpOutlined, 
   ArrowDownOutlined, 
-  CalendarOutlined
+  CalendarOutlined,
+  ReloadOutlined
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { 
@@ -41,7 +42,6 @@ import PermanentDeleteEntryButton from '../../../../components/PermanentDeleteEn
 import type { WalletEntry } from '../../../../store/slices/walletSlice';
 import { formatTransactionDate, formatDateForDisplay } from '../../../../lib/timezone';
 import { getTextColor } from '../../../../lib/color-utils';
-import { useWalletEntryUpdates } from '../../../../hooks/useWalletUpdates';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -50,13 +50,10 @@ export default function WalletDetailPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { currentWallet, walletEntries, deletedEntries, isLoading, error, pagination } = useAppSelector((state) => state.wallet);
-  console.log('currentWallet: ', currentWallet);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   
   const walletId = params.id as string;
-
-  // Enable live wallet entry updates
-  const { newEntries, clearNewEntries } = useWalletEntryUpdates(walletId, !!walletId);
 
   useEffect(() => {
     if (walletId) {
@@ -73,6 +70,21 @@ export default function WalletDetailPage() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleRefresh = async () => {
+    if (!walletId) return;
+    
+    setIsRefreshing(true);
+    try {
+      // Refresh both wallet details and entries
+      await Promise.all([
+        dispatch(fetchWalletById(walletId)),
+        dispatch(fetchWalletEntries({ walletId, page: currentPage, limit: 20 }))
+      ]);
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   const formatCurrency = (amount: number, showSign = false) => {
@@ -185,19 +197,13 @@ export default function WalletDetailPage() {
             entry={record}
             walletId={walletId}
             userRole={currentWallet?.userRole}
-            onSuccess={() => {
-              // Refresh entries after successful edit
-              dispatch(fetchWalletEntries({ walletId, page: currentPage, limit: 20 }));
-            }}
+            onSuccess={handleRefresh}
           />
           <DeleteEntryButton
             entry={record}
             walletId={walletId}
             userRole={currentWallet?.userRole}
-            onSuccess={() => {
-              // Refresh entries after successful delete
-              dispatch(fetchWalletEntries({ walletId, page: currentPage, limit: 20 }));
-            }}
+            onSuccess={handleRefresh}
           />
         </Space>
       ),
@@ -391,38 +397,34 @@ export default function WalletDetailPage() {
           <Space>
             <CalendarOutlined />
             Transaction History
-            {newEntries.length > 0 && (
-              <Badge count={newEntries.length} size="small" />
-            )}
           </Space>
         }
         extra={
           <Space>
             <Text className="text-gray-500">
-              {pagination.total + newEntries.length} total transaction{(pagination.total + newEntries.length) !== 1 ? 's' : ''}
+              {pagination.total} total transaction{pagination.total !== 1 ? 's' : ''}
             </Text>
-            {newEntries.length > 0 && (
-              <Button 
-                size="small" 
-                type="link" 
-                onClick={clearNewEntries}
-                className="!p-0"
-              >
-                Clear {newEntries.length} new
-              </Button>
-            )}
+            <Button 
+              icon={<ReloadOutlined />}
+              onClick={handleRefresh}
+              loading={isRefreshing}
+              size="small"
+              type="default"
+            >
+              Refresh
+            </Button>
           </Space>
         }
       >
         <Table
           columns={columns}
-          dataSource={[...newEntries, ...walletEntries]}
           rowKey="_id"
-          loading={isLoading}
+          dataSource={walletEntries}
+          loading={isLoading || isRefreshing}
           pagination={{
             current: pagination.page,
             pageSize: pagination.limit,
-            total: pagination.total + newEntries.length,
+            total: pagination.total,
             showTotal: (total, range) => 
               `${range[0]}-${range[1]} of ${total} transactions`,
             showSizeChanger: false,
@@ -550,10 +552,7 @@ export default function WalletDetailPage() {
                     entry={record}
                     walletId={walletId}
                     userRole={currentWallet?.userRole}
-                    onSuccess={() => {
-                      // Refresh entries after permanent delete
-                      dispatch(fetchWalletEntries({ walletId, page: currentPage, limit: 20 }));
-                    }}
+                    onSuccess={handleRefresh}
                   />
                 ),
               },

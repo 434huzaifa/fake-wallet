@@ -1,6 +1,6 @@
 # 💰 Fake Wallet
 
-A fun project for building a fake wallet system to practice full-stack development. Built with VS Code and GitHub Copilot using MCP (Model Context Protocol) - total development cost ~$1.60 over 1.5 days. 
+A fun project for building a fake wallet system to practice full-stack development. Built with VS Code and GitHub Copilot using MCP (Model Context Protocol) - total development cost ~$2.00 over 1.5 days. 
 
 ## ✨ Key Features
 
@@ -95,13 +95,32 @@ Use these credentials to explore the app:
 - **Email**: `test@example.com`
 - **Password**: `123456`
 
-##  Deployment
+## Deployment
 
-This app is ready for deployment on Vercel:
+The application is ready for deployment on Vercel with analytics integration. Set up the required environment variables in your Vercel dashboard before deploying:
 
-```bash
-pnpm build
-```
+### Required Environment Variables
+- `MDB_MCP_CONNECTION_STRING`: Your MongoDB connection string
+- `JWT_SECRET`: A secure secret key for JWT tokens
+- `NEXT_PUBLIC_APP_URL`: Your production URL (e.g., https://your-app.vercel.app)
+
+### Optional Environment Variables
+- `VERCEL_ANALYTICS_ID`: Automatically set by Vercel for analytics tracking
+- `NODE_ENV`: Set to "production" for production deployment
+
+### Deployment Steps
+1. Connect your GitHub repository to Vercel
+2. Configure environment variables in Vercel dashboard
+3. Deploy using Vercel's automatic deployment or Vercel CLI
+4. Monitor performance through integrated Vercel Analytics
+
+### Analytics Features
+- **Page Views**: Track user navigation and popular pages
+- **Performance Metrics**: Monitor Core Web Vitals and loading times
+- **User Interactions**: Analyze button clicks and form submissions
+- **Real-time Data**: View analytics data in Vercel dashboard
+
+Deploy using the Vercel CLI or by connecting your GitHub repository to Vercel.
 
 ## 📄 License
 

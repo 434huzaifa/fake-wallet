@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '../../../lib/mongodb';
-import { Tag } from '../../../models/Tag';
+import Tag from '../../../models/Tag';
 import { getAuthenticatedUser } from '../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../lib/api-response';
 

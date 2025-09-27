@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { User } from '../models/User';
 import { Wallet } from '../models/Wallet';
 import { WalletEntry } from '../models/WalletEntry';
-import { Tag } from '../models/Tag';
+import Tag from '../models/Tag';
 import bcrypt from 'bcryptjs';
 import { isNil } from 'lodash';
 import dotenv from 'dotenv';

@@ -3,6 +3,7 @@ import dbConnect from '../../../../../../../lib/mongodb';
 import { WalletEntry } from '../../../../../../../models/WalletEntry';
 import { Wallet } from '../../../../../../../models/Wallet';
 import { WalletAccess } from '../../../../../../../models/WalletAccess';
+import Tag from '../../../../../../../models/Tag';
 import { getAuthenticatedUser } from '../../../../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../../../../lib/api-response';
 

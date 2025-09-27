@@ -31,4 +31,8 @@ const TagSchema = new Schema<ITag>(
 // Create index for better performance
 TagSchema.index({ title: 1 });
 
-export const Tag = mongoose.models.Tag || mongoose.model<ITag>('Tag', TagSchema);
+// Use a more reliable model registration pattern
+const Tag = mongoose.models.Tag || mongoose.model<ITag>('Tag', TagSchema);
+
+export { Tag };
+export default Tag;

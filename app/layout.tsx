@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ConfigProvider } from 'antd';
 import { ReduxProvider } from '../store/provider';
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -52,6 +54,8 @@ export default function RootLayout({
             />
           </ConfigProvider>
         </ReduxProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
