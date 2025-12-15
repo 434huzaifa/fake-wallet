@@ -1,15 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable experimental features for better performance
-  experimental: {
-    // Enable server components optimization
-    optimizeServerReact: true,
-  },
-
   // Performance optimizations
   compress: true,
   
-  // Image optimization
+  // Image optimization - Netlify Image CDN will handle this automatically
   images: {
     formats: ['image/webp', 'image/avif'],
   },
