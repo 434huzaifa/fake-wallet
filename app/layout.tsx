@@ -6,6 +6,9 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 export const metadata: Metadata = {
   title: "Fake Wallet - Digital Wallet Management",
   description: "Manage your digital wallets and transactions",

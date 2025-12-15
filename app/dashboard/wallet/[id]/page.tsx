@@ -29,6 +29,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 
 export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
 import { 
   fetchWalletById, 
   fetchWalletEntries, 
