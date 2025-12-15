@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IWalletAccess extends Document {
-  _id: string;
   walletId: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
   role: 'viewer' | 'partner';

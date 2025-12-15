@@ -3,7 +3,6 @@ import mongoose, { Document, Schema } from 'mongoose';
 export type EntryType = 'add' | 'subtract';
 
 export interface IWalletEntry extends Document {
-  _id: string;
   amount: number;
   type: EntryType;
   description?: string;

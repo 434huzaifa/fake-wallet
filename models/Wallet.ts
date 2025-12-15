@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IWallet extends Document {
-  _id: string;
   name: string;
   icon: string;
   backgroundColor: string;

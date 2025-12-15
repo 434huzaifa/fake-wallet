@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface ITag extends Document {
-  _id: string;
   title: string;
   emoji: string;
   createdAt: Date;
