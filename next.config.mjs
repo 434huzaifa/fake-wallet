@@ -3,6 +3,9 @@ const nextConfig = {
   // Performance optimizations
   compress: true,
   
+  // Output configuration for serverless deployment
+  output: 'standalone',
+  
   // Skip TypeScript type checking during build (project works fine locally)
   typescript: {
     ignoreBuildErrors: true,
