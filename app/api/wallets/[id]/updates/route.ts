@@ -6,6 +6,8 @@ import { WalletAccess } from '../../../../../models/WalletAccess';
 import { getAuthenticatedUser } from '../../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../../lib/api-response';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     await dbConnect();

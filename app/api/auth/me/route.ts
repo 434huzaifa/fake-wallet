@@ -4,6 +4,8 @@ import { createSuccessResponse, createErrorResponse } from '../../../../lib/api-
 import dbConnect from '../../../../lib/mongodb';
 import { User } from '../../../../models/User';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(_request: NextRequest) {
   try {
     await dbConnect();

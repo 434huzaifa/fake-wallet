@@ -65,6 +65,9 @@ export async function middleware(request: NextRequest) {
       if (payload && pathname === '/') {
         return NextResponse.redirect(new URL('/dashboard', request.url));
       }
+
+      // If user is authenticated, allow access to protected routes
+      return NextResponse.next();
     } catch (error) {
       // Token verification failed - clear cookie and redirect if accessing protected route
       console.error('JWT verification error in middleware:', error);

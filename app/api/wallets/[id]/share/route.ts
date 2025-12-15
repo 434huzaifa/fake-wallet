@@ -8,6 +8,8 @@ import { getAuthenticatedUser } from '../../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../../lib/api-response';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const shareWalletSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   role: z.enum(['viewer', 'partner'], {

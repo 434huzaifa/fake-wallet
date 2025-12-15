@@ -7,6 +7,8 @@ import { Wallet } from '../../../../models/Wallet';
 import { WalletEntry } from '../../../../models/WalletEntry';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const updateProfileSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100, 'Name cannot exceed 100 characters'),
   avatar: z.string().max(4, 'Avatar must be a single emoji or character').optional(),

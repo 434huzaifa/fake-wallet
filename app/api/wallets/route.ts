@@ -6,6 +6,8 @@ import { requireAuth } from '../../../lib/auth-middleware';
 import { createSuccessResponse, handleApiError } from '../../../lib/api-response';
 import { createWalletSchema } from '../../../lib/validations';
 
+export const dynamic = 'force-dynamic';
+
 export const GET = requireAuth(async (request: NextRequest, user) => {
   try {
     await dbConnect();

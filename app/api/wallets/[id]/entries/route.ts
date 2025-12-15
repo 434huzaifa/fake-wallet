@@ -3,13 +3,18 @@ import dbConnect from '../../../../../lib/mongodb';
 import { WalletEntry } from '../../../../../models/WalletEntry';
 import { Wallet } from '../../../../../models/Wallet';
 import { WalletAccess } from '../../../../../models/WalletAccess';
-import Tag from '../../../../../models/Tag';
+import { Tag } from '../../../../../models/Tag';
 import { getAuthenticatedUser } from '../../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../../lib/api-response';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     await dbConnect();
+    
+    // Ensure Tag model is loaded
+    Tag;
 
     // Check authentication
     const user = await getAuthenticatedUser();
@@ -305,8 +310,12 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     const walletData = {
       _id: (updatedWallet as any)._id.toString(),
       name: (updatedWallet as any).name,
+      icon: (updatedWallet as any).icon,
+      backgroundColor: (updatedWallet as any).backgroundColor,
       balance: (updatedWallet as any).balance,
       userId: (updatedWallet as any).userId.toString(),
+      createdBy: (updatedWallet as any).createdBy.toString(),
+      userRole: userRole,
       createdAt: (updatedWallet as any).createdAt.toISOString(),
       updatedAt: (updatedWallet as any).updatedAt.toISOString(),
     };

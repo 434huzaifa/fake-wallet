@@ -4,6 +4,8 @@ import { WalletInvitation } from '../../../models/WalletInvitation';
 import { getAuthenticatedUser } from '../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../lib/api-response';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   try {
     await dbConnect();

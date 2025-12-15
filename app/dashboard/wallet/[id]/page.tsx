@@ -50,6 +50,7 @@ export default function WalletDetailPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { currentWallet, walletEntries, deletedEntries, isLoading, error, pagination } = useAppSelector((state) => state.wallet);
+  console.info("🚀 ~ WalletDetailPage ~ currentWallet:", currentWallet)
   const [currentPage, setCurrentPage] = useState(1);
   const [isRefreshing, setIsRefreshing] = useState(false);
   

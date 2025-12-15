@@ -7,6 +7,8 @@ import Tag from '../../../../../../../models/Tag';
 import { getAuthenticatedUser } from '../../../../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../../../../lib/api-response';
 
+export const dynamic = 'force-dynamic';
+
 export async function DELETE(
   request: NextRequest, 
   { params }: { params: { id: string; entryId: string } }

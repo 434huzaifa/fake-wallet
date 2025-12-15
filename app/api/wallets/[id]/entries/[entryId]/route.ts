@@ -3,14 +3,18 @@ import dbConnect from '../../../../../../lib/mongodb';
 import { WalletEntry } from '../../../../../../models/WalletEntry';
 import { Wallet } from '../../../../../../models/Wallet';
 import { WalletAccess } from '../../../../../../models/WalletAccess';
-import Tag from '../../../../../../models/Tag';
+import { Tag } from '../../../../../../models/Tag';
 import { getAuthenticatedUser } from '../../../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../../../lib/api-response';
+
+export const dynamic = 'force-dynamic';
 
 export async function PUT(
   request: NextRequest, 
   { params }: { params: { id: string; entryId: string } }
 ) {
+  // Ensure Tag model is loaded
+  Tag;
   try {
     await dbConnect();
 
@@ -175,9 +179,12 @@ export async function PUT(
     const walletData = updatedWallet ? {
       _id: updatedWallet._id.toString(),
       name: updatedWallet.name,
+      icon: updatedWallet.icon,
+      backgroundColor: updatedWallet.backgroundColor,
       balance: updatedWallet.balance,
       userId: updatedWallet.userId?.toString(),
       createdBy: updatedWallet.createdBy?.toString(),
+      userRole: userRole,
       createdAt: updatedWallet.createdAt.toISOString(),
       updatedAt: updatedWallet.updatedAt.toISOString(),
     } : null;
@@ -316,9 +323,12 @@ export async function DELETE(
     const walletData = updatedWallet ? {
       _id: updatedWallet._id.toString(),
       name: updatedWallet.name,
+      icon: updatedWallet.icon,
+      backgroundColor: updatedWallet.backgroundColor,
       balance: updatedWallet.balance,
       userId: updatedWallet.userId?.toString(),
       createdBy: updatedWallet.createdBy?.toString(),
+      userRole: userRole,
       createdAt: updatedWallet.createdAt.toISOString(),
       updatedAt: updatedWallet.updatedAt.toISOString(),
     } : null;

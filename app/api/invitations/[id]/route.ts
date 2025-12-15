@@ -6,6 +6,8 @@ import { getAuthenticatedUser } from '../../../../lib/auth-middleware';
 import { createSuccessResponse, createErrorResponse, handleApiError } from '../../../../lib/api-response';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const respondInvitationSchema = z.object({
   action: z.enum(['accept', 'decline'], {
     message: 'Action must be either accept or decline'
