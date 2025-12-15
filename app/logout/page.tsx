@@ -10,6 +10,8 @@ import { forceLogoutAndRedirect, clearAuthData } from '../../lib/auth-utils';
 
 const { Title, Paragraph } = Typography;
 
+export const dynamic = 'force-dynamic';
+
 export default function LogoutPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();

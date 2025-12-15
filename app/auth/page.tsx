@@ -11,6 +11,8 @@ import EmojiAvatarPicker from '../../components/EmojiAvatarPicker';
 
 const { Title, Text, Link } = Typography;
 
+export const dynamic = 'force-dynamic';
+
 export default function AuthPage() {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [form] = Form.useForm();

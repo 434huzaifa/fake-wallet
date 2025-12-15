@@ -6,6 +6,8 @@ import { WalletOutlined, LoginOutlined } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   const router = useRouter();
 

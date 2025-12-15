@@ -13,6 +13,8 @@ import NotificationPanel from '../../components/NotificationPanel';
 const { Header, Content } = Layout;
 const { Title, Text } = Typography;
 
+export const dynamic = 'force-dynamic';
+
 export default function DashboardLayout({
   children,
 }: {

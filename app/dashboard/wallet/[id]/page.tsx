@@ -27,6 +27,8 @@ import {
   ReloadOutlined
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+
+export const dynamic = 'force-dynamic';
 import { 
   fetchWalletById, 
   fetchWalletEntries, 

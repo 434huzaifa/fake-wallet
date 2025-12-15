@@ -28,6 +28,8 @@ import EmojiAvatarPicker from '../../../components/EmojiAvatarPicker';
 const { Title, Text } = Typography;
 const { confirm } = Modal;
 
+export const dynamic = 'force-dynamic';
+
 export default function ProfilePage() {
   const [form] = Form.useForm();
   const [isEditing, setIsEditing] = useState(false);

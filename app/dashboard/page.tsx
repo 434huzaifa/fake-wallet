@@ -11,6 +11,8 @@ import { useWalletUpdates } from '../../hooks/useWalletUpdates';
 
 const { Title, Paragraph } = Typography;
 
+export const dynamic = 'force-dynamic';
+
 export default function DashboardPage() {
   const dispatch = useAppDispatch();
   const { wallets, isLoading, error } = useAppSelector((state) => state.wallet);
