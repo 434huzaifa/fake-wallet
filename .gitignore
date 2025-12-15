@@ -37,3 +37,6 @@ next-env.d.ts
 .env
 pnpm-lock.yaml
 pnpm-lock.yaml
+
+# Local Netlify folder
+.netlify
